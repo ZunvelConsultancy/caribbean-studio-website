@@ -68,7 +68,7 @@
             <!-- Left part: On desktop, it's the nav. On mobile, it's the logo. -->
             <div class="flex-1 flex justify-start">
                  <a href="#" class="flex items-center text-xl sm:text-2xl font-bold text-white md:hidden">
-                    <img src="logo_pina_verde.png" alt="Caribbean Studio Academy Logo" class="h-8 mr-2">
+                    <img src="img/logo_pina_verde.png" alt="Caribbean Studio Academy Logo" class="h-8 mr-2">
                     Caribbean <span class="text-[#80FF00]">Studio Academy</span>
                 </a>
                  <nav class="hidden md:flex items-center space-x-8">
@@ -81,7 +81,7 @@
             <!-- Center part: the logo on desktop -->
             <div class="hidden md:block">
                 <a href="#" class="flex items-center text-2xl font-bold text-white">
-                    <img src="logo_pina_verde.png" alt="Caribbean Studio Academy Logo" class="h-10 mr-3">
+                    <img src="img/logo_pina_verde.png" alt="Caribbean Studio Academy Logo" class="h-10 mr-3">
                     Caribbean <span class="text-[#80FF00]">Studio Academy</span>
                 </a>
             </div>
@@ -216,16 +216,16 @@
                 ¿Listo para empezar? Completa el formulario o contáctanos directamente.
             </p>
             <div class="max-w-3xl mx-auto bg-gray-900 p-6 sm:p-8 rounded-xl shadow-lg fade-in">
-                <form id="contact-form">
+                <form id="google-form">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                        <input type="text" placeholder="Tu Nombre" class="w-full bg-gray-800 text-white p-3 rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#80FF00]">
-                        <input type="email" placeholder="Tu Correo Electrónico" class="w-full bg-gray-800 text-white p-3 rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#80FF00]">
+                        <input type="text" name="entry.35797977" placeholder="Tu Nombre" class="w-full bg-gray-800 text-white p-3 rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#80FF00]" required>
+                        <input type="email" name="entry.1128598264" placeholder="Tu Correo Electrónico" class="w-full bg-gray-800 text-white p-3 rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#80FF00]" required>
                     </div>
                     <div class="mb-6">
-                        <input type="text" placeholder="Asunto" class="w-full bg-gray-800 text-white p-3 rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#80FF00]">
+                        <input type="text" name="entry.1061878455" placeholder="Asunto" class="w-full bg-gray-800 text-white p-3 rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#80FF00]" required>
                     </div>
                     <div class="mb-6">
-                        <textarea placeholder="Cuéntanos sobre tu proyecto..." rows="5" class="w-full bg-gray-800 text-white p-3 rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#80FF00]"></textarea>
+                        <textarea name="entry.715940891" placeholder="Cuéntanos sobre tu proyecto..." rows="5" class="w-full bg-gray-800 text-white p-3 rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#80FF00]" required></textarea>
                     </div>
                     <div class="text-center">
                         <button type="submit" class="bg-[#80FF00] hover:bg-[#6ACC00] text-black font-bold py-3 px-12 rounded-lg text-lg transition-transform transform hover:scale-105">
@@ -233,7 +233,7 @@
                         </button>
                     </div>
                 </form>
-                 <div id="form-message" class="text-center mt-4 text-[#80FF00]"></div>
+                <div id="form-message" class="text-center mt-4 text-[#80FF00]"></div>
             </div>
         </div>
     </section>
@@ -242,7 +242,7 @@
     <footer class="bg-gray-900 py-8">
         <div class="container mx-auto px-4 sm:px-6 text-center text-gray-500">
             <div class="flex justify-center mb-6">
-                <img src="logo_pina_verde.png" alt="Caribbean Studio Academy Logo" class="h-12">
+                <img src="img/logo_pina_verde.png" alt="Caribbean Studio Academy Logo" class="h-12">
             </div>
             <div class="flex justify-center space-x-6 mb-4">
                 <a href="https://www.instagram.com/caribbean_studio/?hl=es-la" target="_blank" class="hover:text-[#80FF00] transition text-2xl"><i class="fab fa-instagram"></i></a>
@@ -304,18 +304,29 @@
             appearOnScroll.observe(fader);
         });
 
-        // Contact Form Submission
-        const contactForm = document.getElementById('contact-form');
+        // Google Form Submission
+        const googleForm = document.getElementById('google-form');
         const formMessage = document.getElementById('form-message');
-        contactForm.addEventListener('submit', function(e) {
+        googleForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            formMessage.textContent = '¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.';
-            contactForm.reset();
-            setTimeout(() => {
-                formMessage.textContent = '';
-            }, 5000);
+            const formData = new FormData(googleForm);
+            fetch('https://docs.google.com/forms/u/0/d/e/1FAIpQLSfdVZrnMfx4yHW7BtnthRlf1Q4IzS-I50KJ9mi49mYlXE2tMg/formResponse', {
+                method: 'POST',
+                body: formData,
+                mode: 'no-cors' // Important
+            }).then(() => {
+                formMessage.textContent = '¡Recibido! Tu información ya está sonando en nuestros monitores!';
+                googleForm.reset();
+                setTimeout(() => {
+                    formMessage.textContent = '';
+                }, 5000);
+            }).catch(() => {
+                formMessage.textContent = 'Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.';
+                 setTimeout(() => {
+                    formMessage.textContent = '';
+                }, 5000);
+            });
         });
-
     </script>
 </body>
 </html>
