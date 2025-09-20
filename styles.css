@@ -361,7 +361,8 @@ main {
 }
 
 .brand img {
-    height: 3.25rem;
+    height: 4rem;
+    width: auto;
 }
 
 .brand span {
