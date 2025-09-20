@@ -181,6 +181,30 @@ main {
     color: rgba(229, 231, 235, 0.85);
 }
 
+@media (max-width: 540px) {
+    .hero-description {
+        font-size: 1.1rem;
+        width: 100%;
+    }
+
+    .hero-description__accent {
+        white-space: normal;
+        font-size: 0.85em;
+        letter-spacing: 0.08em;
+        line-height: 1.4;
+    }
+
+    .hero-description__lead {
+        margin-top: 0.85rem;
+        font-size: 0.95em;
+    }
+
+    .hero-description__note {
+        margin-top: 1.2rem;
+        font-size: 0.9em;
+    }
+}
+
 .button-group {
     margin-top: 2.5rem;
     display: flex;
