@@ -152,21 +152,27 @@ main {
     letter-spacing: 0.02em;
     text-align: center;
     text-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+    padding: 0 1rem;
 }
 
 .hero-description__accent {
-    display: inline-block;
-    padding: 0.4rem 1.2rem;
-    margin-bottom: 0.75rem;
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 0.45rem 1.4rem;
+    margin: 0 auto 1rem;
     background: linear-gradient(135deg, rgba(128, 255, 0, 0.95), rgba(106, 204, 0, 0.95));
     color: #0b1120;
     font-size: 0.95em;
     font-weight: 700;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     border-radius: 999px;
     box-shadow: 0 20px 45px rgba(128, 255, 0, 0.3);
-    white-space: nowrap;
+    text-align: center;
+    white-space: normal;
+    max-width: 24rem;
 }
 
 .hero-description__lead {
@@ -183,25 +189,28 @@ main {
 
 @media (max-width: 540px) {
     .hero-description {
-        font-size: 1.1rem;
+        font-size: 1.05rem;
         width: 100%;
+        padding: 0 0.75rem;
     }
 
     .hero-description__accent {
-        white-space: normal;
-        font-size: 0.85em;
-        letter-spacing: 0.08em;
-        line-height: 1.4;
+        display: flex;
+        font-size: 0.82em;
+        letter-spacing: 0.06em;
+        line-height: 1.5;
+        padding: 0.5rem 1rem;
+        max-width: 20rem;
     }
 
     .hero-description__lead {
         margin-top: 0.85rem;
-        font-size: 0.95em;
+        font-size: 0.92em;
     }
 
     .hero-description__note {
-        margin-top: 1.2rem;
-        font-size: 0.9em;
+        margin-top: 1.15rem;
+        font-size: 0.88em;
     }
 }
 
